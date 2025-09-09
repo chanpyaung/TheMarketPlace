@@ -67,9 +67,16 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.coil)
+    implementation(libs.coil.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
 
     // Hilt dependencies
     implementation(libs.hilt.android)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.hilt.compiler)
 
     // Coroutines dependencies
