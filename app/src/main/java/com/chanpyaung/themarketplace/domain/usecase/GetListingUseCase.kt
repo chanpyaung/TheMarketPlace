@@ -1,5 +1,6 @@
 package com.chanpyaung.themarketplace.domain.usecase
 
+import com.chanpyaung.themarketplace.data.models.ReserveState
 import com.chanpyaung.themarketplace.data.repository.DataRepository
 import com.chanpyaung.themarketplace.domain.models.Product
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -15,16 +16,23 @@ class GetListingUseCase @Inject constructor(
             try {
                 val productList = repository.getListing().list
                     .map {
+                        val reserveState = ReserveState.fromInt(it.reserveState)
                         Product(
                             id = it.listingId,
                             title = it.title,
                             location = it.region,
-                            currentPrice = it.priceDisplay,
-                            buyNowPrice = it.buyNowPrice.toString(),
                             hasBuyNow = it.hasBuyNow,
                             isClassified = it.isClassified,
+                            imageUrl = it.photoUrls.firstOrNull().orEmpty(),
+                            currentPrice = if (reserveState != ReserveState.NOT_APPLICABLE) it.priceDisplay else "",
                             displayPrice = it.priceDisplay,
-                            imageUrl = it.photoUrls.firstOrNull().orEmpty()
+                            buyNowPrice = it.buyNowPrice.toString(),
+                            reserveState = when(reserveState) {
+                                ReserveState.NOT_MET -> "Reserve not met"
+                                ReserveState.MET -> "Reserve met"
+                                ReserveState.NONE -> "No reserve"
+                                else -> ""
+                            }
                         )
                     }
                 Result.success(productList)

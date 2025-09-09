@@ -133,3 +133,15 @@ data class ProductData(
     @SerialName("Whiteware")
     val whiteware: String = ""
 )
+
+@Serializable
+enum class ReserveState(val value: Int) {
+    NONE(0),          // No reserve.
+    MET(1),           // Reserve has been met.
+    NOT_MET(2),       // Reserve has not been met.
+    NOT_APPLICABLE(3); // Classified or Buy Now Only.
+
+    companion object {
+        fun fromInt(value: Int) = entries.firstOrNull { it.value == value } ?: NOT_APPLICABLE
+    }
+}

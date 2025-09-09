@@ -10,4 +10,5 @@ data class Product(
     val isClassified: Boolean = false,
     val displayPrice: String = "",
     val imageUrl: String = "",
+    val reserveState: String = "",
 )
