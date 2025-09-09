@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     id("org.jetbrains.kotlin.plugin.compose") version "2.2.10"
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
@@ -67,9 +68,16 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.coil)
+    implementation(libs.coil.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
 
     // Hilt dependencies
     implementation(libs.hilt.android)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.hilt.compiler)
 
     // Coroutines dependencies
