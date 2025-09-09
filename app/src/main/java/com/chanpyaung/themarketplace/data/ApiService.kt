@@ -10,7 +10,7 @@ interface ApiService {
     @GET("listings/latest.json")
     suspend fun getLatestListings(
         @QueryMap
-        params: Map<String, @JvmWildcard Any>,
+        params: Map<String, @JvmSuppressWildcards Any>,
     ): Response<ListingResponse>
 
 }

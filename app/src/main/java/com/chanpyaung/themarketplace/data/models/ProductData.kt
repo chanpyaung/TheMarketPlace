@@ -6,16 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProductData(
-    @SerialName("AdditionalData")
-    val additionalData: AdditionalData = AdditionalData(),
     @SerialName("Address")
     val address: String = "",
     @SerialName("AdjacentSuburbIds")
     val adjacentSuburbIds: List<Int> = listOf(),
     @SerialName("AdjacentSuburbNames")
-    val adjacentSuburbNames: List<String> = listOf(),
-    @SerialName("Agency")
-    val agency: Any = Any(),
+    val adjacentSuburbNames: List<String> = emptyList(),
     @SerialName("AgencyReference")
     val agencyReference: String = "",
     @SerialName("Area")
@@ -76,8 +72,6 @@ data class ProductData(
     val listingGroup: String = "",
     @SerialName("ListingId")
     val listingId: Long = 0,
-    @SerialName("ListingLength")
-    val listingLength: Any = Any(),
     @SerialName("Lounges")
     val lounges: Int = 0,
     @SerialName("MaxTenants")
